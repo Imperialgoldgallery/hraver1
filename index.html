@@ -1,1 +1,1401 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF9F6" />
+<title>Արամ & Անի · Հարսանյաց Հրավեր</title>
+<meta name="description" content="Սիրով հրավիրում ենք ձեզ մեր հարսանիքին՝ 30 հունվարի, 2027։" />
+<meta property="og:title" content="Արամ & Անի · 30 · 01 · 2027" />
+<meta property="og:description" content="Սիրով հրավիրում ենք ձեզ մեր հարսանիքին։" />
+<meta property="og:type" content="website" />
 
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+Armenian:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+<!-- Tailwind via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ivory:    '#FAF9F6',
+          pale:     '#E8EFF5',
+          silver:   '#C9D0D5',
+          blush:    '#E9D6D2',
+          slate:    '#65727B',
+          dslate:   '#56636B',
+          lgray:    '#929BA0',
+          bgray:    '#6687A8',
+          coral:    '#FF8068',
+          chat:     '#62D900'
+        },
+        fontFamily: {
+          script:  ['"Pinyon Script"', '"Allura"', 'cursive'],
+          allura:  ['Allura', 'cursive'],
+          serif:   ['"Cormorant Garamond"', 'serif'],
+          arm:     ['"Noto Sans Armenian"', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --ivory:#FAF9F6;
+    --bgray:#6687A8;
+    --slate:#65727B;
+    --dslate:#56636B;
+    --lgray:#929BA0;
+    --pale:#E8EFF5;
+    --silver:#C9D0D5;
+  }
+  *{ -webkit-tap-highlight-color: transparent; }
+  html, body { background: var(--ivory); color: var(--slate); font-family: 'Noto Sans Armenian', sans-serif; }
+  body { overflow-x: hidden; }
+
+  /* Paper texture */
+  .paper-texture{
+    background-color: var(--ivory);
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(102,135,168,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(201,208,213,0.05) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(233,214,210,0.03) 0%, transparent 50%);
+  }
+  .paper-fiber::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(101,114,123,.15), transparent),
+      radial-gradient(1px 1px at 30% 80%, rgba(101,114,123,.12), transparent),
+      radial-gradient(1px 1px at 70% 40%, rgba(101,114,123,.10), transparent),
+      radial-gradient(1px 1px at 90% 70%, rgba(101,114,123,.14), transparent),
+      radial-gradient(1px 1px at 50% 10%, rgba(101,114,123,.08), transparent);
+    pointer-events:none;
+    mix-blend-mode: multiply;
+    opacity:.6;
+  }
+
+  /* ============ ENVELOPE ============ */
+  #envelope-intro{
+    position: fixed; inset: 0;
+    z-index: 100;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--ivory);
+    transition: opacity 1.2s ease, visibility 1.2s ease;
+  }
+  #envelope-intro.opened{ opacity:0; visibility:hidden; pointer-events:none; }
+
+  .envelope-scene{
+    position:relative;
+    width: min(92vw, 420px);
+    aspect-ratio: 4/5;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .envelope{
+    position:relative;
+    width: 88%;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+    filter: drop-shadow(0 30px 40px rgba(86,99,107,0.18)) drop-shadow(0 8px 16px rgba(86,99,107,0.12));
+    transform-style: preserve-3d;
+  }
+  .envelope-body{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, #fbfaf6 0%, #f4f1ea 100%);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .envelope-body::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 15% 30%, rgba(101,114,123,.18), transparent),
+      radial-gradient(1px 1px at 45% 75%, rgba(101,114,123,.14), transparent),
+      radial-gradient(1px 1px at 80% 25%, rgba(101,114,123,.16), transparent),
+      radial-gradient(1px 1px at 65% 85%, rgba(101,114,123,.12), transparent);
+    mix-blend-mode: multiply;
+    opacity:.7;
+  }
+
+  /* Inner V-fold lines */
+  .envelope-fold{
+    position:absolute; inset:0;
+    pointer-events:none;
+  }
+  .envelope-fold::before, .envelope-fold::after{
+    content:"";
+    position:absolute;
+    background: linear-gradient(90deg, transparent, rgba(101,114,123,.18), transparent);
+    height: 1px;
+  }
+  .envelope-fold::before{
+    top: 50%; left: 0; right: 0;
+    transform: rotate(28deg);
+    transform-origin: left center;
+  }
+  .envelope-fold::after{
+    top: 50%; left: 0; right: 0;
+    transform: rotate(-28deg);
+    transform-origin: right center;
+  }
+
+  /* Top flap */
+  .envelope-flap{
+    position:absolute;
+    top:0; left:0; right:0;
+    height: 55%;
+    background: linear-gradient(180deg, #f6f3ec 0%, #ece8df 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transition: transform 1.4s cubic-bezier(.65,.05,.36,1);
+    z-index: 3;
+    box-shadow: inset 0 -4px 10px rgba(101,114,123,0.08);
+  }
+  .envelope-flap::after{
+    content:"";
+    position:absolute; inset:0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background-image:
+      radial-gradient(1px 1px at 20% 20%, rgba(101,114,123,.15), transparent),
+      radial-gradient(1px 1px at 60% 35%, rgba(101,114,123,.12), transparent),
+      radial-gradient(1px 1px at 80% 15%, rgba(101,114,123,.14), transparent);
+    mix-blend-mode: multiply;
+  }
+
+  .envelope.open .envelope-flap{
+    transform: rotateX(180deg);
+  }
+
+  /* Seal */
+  .seal{
+    position:absolute;
+    top:50%; left:50%;
+    width: 110px; height: 130px;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: opacity .8s ease .2s, transform .8s ease .2s;
+    cursor: pointer;
+  }
+  .envelope.open .seal{
+    opacity:0; transform: translate(-50%, -80%) scale(.8);
+  }
+  .seal-oval{
+    position:absolute; inset:0;
+    border-radius: 50% / 45%;
+    background:
+      radial-gradient(ellipse at 35% 25%, #dfe7ee 0%, #b7c4d0 35%, #8fa3b6 70%, #6e8599 100%);
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.55),
+      inset 0 -4px 8px rgba(86,99,107,0.35),
+      inset 2px 0 4px rgba(255,255,255,0.25),
+      inset -2px 0 4px rgba(86,99,107,0.25),
+      0 8px 18px rgba(86,99,107,0.35),
+      0 2px 4px rgba(86,99,107,0.25);
+  }
+  .seal-oval::before{
+    content:"";
+    position:absolute; inset:6px;
+    border-radius: 50% / 45%;
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: inset 0 0 0 1px rgba(86,99,107,0.25);
+  }
+  .seal-oval::after{
+    content:"";
+    position:absolute;
+    top:12%; left:18%;
+    width:35%; height:25%;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.55), transparent 70%);
+    filter: blur(2px);
+    border-radius:50%;
+  }
+  .seal-monogram{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family: 'Pinyon Script', cursive;
+    font-size: 44px;
+    color: #3f5163;
+    text-shadow:
+      0 1px 0 rgba(255,255,255,0.5),
+      0 -1px 0 rgba(60,75,90,0.35);
+    letter-spacing: 2px;
+  }
+
+  /* Flowers behind seal */
+  .flowers{
+    position:absolute;
+    top:50%; left:50%;
+    width: 260px; height: 260px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events:none;
+    animation: sway 7s ease-in-out infinite;
+  }
+  @keyframes sway{
+    0%,100%{ transform: translate(-50%,-50%) rotate(-1.5deg); }
+    50%{ transform: translate(-50%,-50%) rotate(1.5deg); }
+  }
+
+  /* Invitation card inside envelope */
+  .invitation-card{
+    position:absolute;
+    top: 8%; left: 8%; right: 8%;
+    height: 84%;
+    background: linear-gradient(180deg, #fdfcf9 0%, #f6f3ec 100%);
+    border-radius: 3px;
+    z-index: 1;
+    transform: translateY(0);
+    transition: transform 1.4s cubic-bezier(.65,.05,.36,1) .3s;
+    box-shadow: inset 0 0 0 1px rgba(101,114,123,0.08);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 20px;
+    text-align:center;
+  }
+  .envelope.open .invitation-card{
+    transform: translateY(-40%);
+  }
+  .invitation-card .mini-mono{
+    font-family: 'Pinyon Script', cursive;
+    font-size: 34px;
+    color: var(--bgray);
+    letter-spacing: 4px;
+  }
+  .invitation-card .mini-date{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: var(--slate);
+    letter-spacing: 6px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  /* Open hint */
+  .open-hint{
+    position:absolute;
+    bottom: -40px; left:50%;
+    transform: translateX(-50%);
+    text-align:center;
+    color: var(--slate);
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 6px;
+    font-size: 12px;
+    animation: hintPulse 2.4s ease-in-out infinite;
+  }
+  .open-hint .arrow{
+    font-size: 18px;
+    color: var(--bgray);
+    margin-bottom: 4px;
+  }
+  @keyframes hintPulse{
+    0%,100%{ opacity:.55; transform: translateX(-50%) translateY(0); }
+    50%{ opacity:1; transform: translateX(-50%) translateY(-4px); }
+  }
+
+  /* ============ MAIN SITE ============ */
+  #main-site{
+    opacity: 0;
+    transition: opacity 1.2s ease .4s;
+  }
+  #main-site.visible{ opacity: 1; }
+
+  .section-fade{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .section-fade.in{
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* Hero image watercolor edges */
+  .watercolor-frame{
+    -webkit-mask-image:
+      radial-gradient(ellipse 95% 85% at 50% 50%, #000 55%, transparent 100%);
+    mask-image:
+      radial-gradient(ellipse 95% 85% at 50% 50%, #000 55%, transparent 100%);
+  }
+  .watercolor-frame-soft{
+    -webkit-mask-image:
+      radial-gradient(ellipse 100% 90% at 50% 50%, #000 45%, transparent 95%);
+    mask-image:
+      radial-gradient(ellipse 100% 90% at 50% 50%, #000 45%, transparent 95%);
+  }
+
+  /* Countdown */
+  .cd-num{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    color: var(--bgray);
+    font-size: clamp(44px, 10vw, 72px);
+    line-height: 1;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-label{
+    font-family: 'Noto Sans Armenian', sans-serif;
+    color: var(--lgray);
+    letter-spacing: 3px;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Event timeline */
+  .event-card{
+    border: 1px solid rgba(102,135,168,0.18);
+    border-radius: 2px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+  }
+  .dashed-path{
+    background-image: linear-gradient(to bottom, rgba(102,135,168,0.4) 50%, transparent 50%);
+    background-size: 1px 10px;
+    background-repeat: repeat-y;
+  }
+
+  /* Buttons */
+  .btn-outline{
+    border: 1px solid var(--bgray);
+    color: var(--bgray);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    transition: all .3s ease;
+    background: transparent;
+  }
+  .btn-outline:hover{ background: var(--bgray); color: #fff; }
+
+  .btn-primary{
+    background: var(--bgray);
+    color: #fff;
+    padding: 14px 34px;
+    border-radius: 999px;
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    transition: all .3s ease;
+    border: 1px solid var(--bgray);
+  }
+  .btn-primary:hover{ background: var(--dslate); border-color: var(--dslate); }
+  .btn-primary:disabled{ opacity:.5; cursor:not-allowed; }
+
+  /* Form */
+  .field{
+    border-bottom: 1px solid rgba(101,114,123,0.25);
+    padding: 14px 2px;
+    transition: border-color .3s ease;
+  }
+  .field:focus-within{ border-color: var(--bgray); }
+  .field input, .field textarea, .field select{
+    width:100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Noto Sans Armenian', sans-serif;
+    font-size: 15px;
+    color: var(--dslate);
+  }
+  .field label{
+    display:block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--lgray);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .field.error{ border-color: #c97b7b; }
+  .error-msg{ color:#c97b7b; font-size:12px; margin-top:6px; display:none; }
+  .field.error + .error-msg, .field.error ~ .error-msg{ display:block; }
+
+  /* Radio */
+  .radio-pill{
+    display:flex; align-items:center; gap:10px;
+    padding: 12px 16px;
+    border: 1px solid rgba(102,135,168,0.25);
+    border-radius: 999px;
+    cursor:pointer;
+    transition: all .3s ease;
+    font-size: 13px;
+    color: var(--slate);
+  }
+  .radio-pill:hover{ border-color: var(--bgray); }
+  .radio-pill input{ display:none; }
+  .radio-dot{
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1px solid var(--bgray);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .radio-dot::after{
+    content:""; position:absolute; inset:3px; border-radius:50%;
+    background: var(--bgray);
+    transform: scale(0); transition: transform .25s ease;
+  }
+  .radio-pill input:checked ~ .radio-dot::after{ transform: scale(1); }
+  .radio-pill input:checked ~ span{ color: var(--bgray); }
+
+  /* Floating buttons */
+  .fab{
+    position: fixed;
+    right: 18px;
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(86,99,107,0.25), 0 4px 8px rgba(86,99,107,0.15);
+    z-index: 60;
+    transition: transform .3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .fab:hover{ transform: translateY(-3px); }
+  .fab-faq{ bottom: 160px; background: var(--coral); font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:500; letter-spacing:1px; }
+  .fab-chat{ bottom: 84px; background: var(--chat); }
+  .fab-music{ bottom: 18px; background: rgba(255,255,255,0.95); color: var(--bgray); border: 1px solid rgba(102,135,168,0.25); }
+  .fab-music.playing .music-bars span{ animation: bars 1s ease-in-out infinite; }
+  .music-bars{ display:flex; gap:2px; align-items:flex-end; height:16px; }
+  .music-bars span{ width:2px; background: var(--bgray); border-radius:1px; height: 4px; }
+  .music-bars span:nth-child(1){ animation-delay: 0s; }
+  .music-bars span:nth-child(2){ animation-delay: .2s; }
+  .music-bars span:nth-child(3){ animation-delay: .4s; }
+  .music-bars span:nth-child(4){ animation-delay: .1s; }
+  @keyframes bars{
+    0%,100%{ height: 4px; }
+    50%{ height: 16px; }
+  }
+
+  /* FAQ Modal */
+  .modal-backdrop{
+    position: fixed; inset:0;
+    background: rgba(86,99,107,0.35);
+    backdrop-filter: blur(6px);
+    z-index: 80;
+    opacity: 0; visibility: hidden;
+    transition: opacity .4s ease, visibility .4s ease;
+  }
+  .modal-backdrop.open{ opacity:1; visibility: visible; }
+  .modal-panel{
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    max-height: 85vh;
+    background: var(--ivory);
+    border-radius: 24px 24px 0 0;
+    z-index: 81;
+    transform: translateY(100%);
+    transition: transform .5s cubic-bezier(.65,.05,.36,1);
+    overflow-y: auto;
+    padding: 28px 24px calc(28px + env(safe-area-inset-bottom));
+  }
+  .modal-backdrop.open + .modal-panel,
+  .modal-panel.open{ transform: translateY(0); }
+  @media (min-width: 768px){
+    .modal-panel{
+      top: 50%; left: 50%; right: auto; bottom: auto;
+      transform: translate(-50%, -40%);
+      width: min(560px, 90vw);
+      max-height: 80vh;
+      border-radius: 16px;
+      opacity: 0;
+      transition: transform .5s ease, opacity .4s ease;
+    }
+    .modal-panel.open{ transform: translate(-50%, -50%); opacity: 1; }
+  }
+
+  .faq-item{
+    border-bottom: 1px solid rgba(101,114,123,0.15);
+    padding: 18px 0;
+  }
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center;
+    cursor:pointer; gap: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dslate);
+    font-weight: 500;
+  }
+  .faq-q .chev{
+    transition: transform .3s ease;
+    color: var(--bgray);
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-q .chev{ transform: rotate(180deg); }
+  .faq-a{
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, margin .3s ease;
+    color: var(--slate);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a{ max-height: 300px; margin-top: 12px; }
+
+  /* Success toast */
+  .toast{
+    position: fixed;
+    top: 24px; left: 50%;
+    transform: translateX(-50%) translateY(-120%);
+    background: #fff;
+    border: 1px solid rgba(102,135,168,0.25);
+    padding: 14px 24px;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(86,99,107,0.2);
+    z-index: 90;
+    transition: transform .5s cubic-bezier(.65,.05,.36,1);
+    font-size: 13px;
+    color: var(--dslate);
+    display:flex; align-items:center; gap: 10px;
+  }
+  .toast.show{ transform: translateX(-50%) translateY(0); }
+
+  /* Falling Hearts Container */
+  #hearts-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none; /* Allows clicking through the hearts to buttons/links below */
+    z-index: 9999; /* Ensures it stays on top of everything, including modals */
+    overflow: hidden;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+    }
+  }
+
+  /* Scrollbar subtle */
+  ::-webkit-scrollbar{ width: 6px; }
+  ::-webkit-scrollbar-thumb{ background: var(--silver); border-radius: 3px; }
+</style>
+</head>
+<body class="paper-texture">
+
+<!-- ===================== ENVELOPE INTRO ===================== -->
+<div id="envelope-intro" aria-label="Հրավերի բացման էկրան">
+  <div class="envelope-scene">
+    <!-- Flowers behind seal -->
+    <svg class="flowers" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g opacity="0.9">
+        <!-- stems -->
+        <path d="M130 200 C 120 160, 90 140, 70 110" stroke="#a8b3a0" stroke-width="1.2" fill="none"/>
+        <path d="M130 200 C 140 160, 170 140, 190 110" stroke="#a8b3a0" stroke-width="1.2" fill="none"/>
+        <path d="M130 200 C 130 160, 130 130, 130 90" stroke="#a8b3a0" stroke-width="1.2" fill="none"/>
+        <path d="M130 200 C 110 170, 80 160, 55 150" stroke="#a8b3a0" stroke-width="1.2" fill="none"/>
+        <path d="M130 200 C 150 170, 180 160, 205 150" stroke="#a8b3a0" stroke-width="1.2" fill="none"/>
+        <!-- leaves -->
+        <ellipse cx="95" cy="150" rx="8" ry="3" fill="#c5cdbb" transform="rotate(-30 95 150)"/>
+        <ellipse cx="165" cy="150" rx="8" ry="3" fill="#c5cdbb" transform="rotate(30 165 150)"/>
+        <ellipse cx="115" cy="130" rx="7" ry="2.5" fill="#c5cdbb" transform="rotate(-20 115 130)"/>
+        <ellipse cx="145" cy="130" rx="7" ry="2.5" fill="#c5cdbb" transform="rotate(20 145 130)"/>
+        <!-- flower heads (dried white) -->
+        <g>
+          <circle cx="70" cy="110" r="10" fill="#f5f1e8"/>
+          <circle cx="66" cy="107" r="3" fill="#ebe4d4"/>
+          <circle cx="74" cy="113" r="3" fill="#ebe4d4"/>
+          <circle cx="70" cy="110" r="2" fill="#d4c9b0"/>
+        </g>
+        <g>
+          <circle cx="190" cy="110" r="10" fill="#f5f1e8"/>
+          <circle cx="186" cy="107" r="3" fill="#ebe4d4"/>
+          <circle cx="194" cy="113" r="3" fill="#ebe4d4"/>
+          <circle cx="190" cy="110" r="2" fill="#d4c9b0"/>
+        </g>
+        <g>
+          <circle cx="130" cy="90" r="12" fill="#f5f1e8"/>
+          <circle cx="125" cy="86" r="3.5" fill="#ebe4d4"/>
+          <circle cx="135" cy="94" r="3.5" fill="#ebe4d4"/>
+          <circle cx="130" cy="90" r="2.5" fill="#d4c9b0"/>
+        </g>
+        <g>
+          <circle cx="55" cy="150" r="8" fill="#f5f1e8"/>
+          <circle cx="55" cy="150" r="2" fill="#d4c9b0"/>
+        </g>
+        <g>
+          <circle cx="205" cy="150" r="8" fill="#f5f1e8"/>
+          <circle cx="205" cy="150" r="2" fill="#d4c9b0"/>
+        </g>
+        <!-- small buds -->
+        <circle cx="100" cy="115" r="3" fill="#ebe4d4"/>
+        <circle cx="160" cy="115" r="3" fill="#ebe4d4"/>
+        <circle cx="85" cy="135" r="2.5" fill="#ebe4d4"/>
+        <circle cx="175" cy="135" r="2.5" fill="#ebe4d4"/>
+      </g>
+    </svg>
+
+    <div class="envelope" id="envelope">
+      <div class="envelope-body"></div>
+      <div class="envelope-fold"></div>
+      <div class="invitation-card">
+        <div class="mini-mono" id="miniMono">Ա · Ա</div>
+        <div class="mini-date" id="miniDate">30 · 01 · 2027</div>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="seal" id="seal" role="button" tabindex="0" aria-label="Բացել հրավերը">
+        <div class="seal-oval"></div>
+        <div class="seal-monogram" id="sealMono">ԱԱ</div>
+      </div>
+    </div>
+
+    <div class="open-hint" id="openHint">
+      <div class="arrow">↑</div>
+      <div>ԲԱՑԵԼ</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN SITE ===================== -->
+<main id="main-site" class="paper-texture">
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex flex-col items-center justify-start pt-16 pb-10 px-6 overflow-hidden">
+    <div class="section-fade text-center">
+      <!-- Monogram -->
+      <svg width="110" height="110" viewBox="0 0 110 110" class="mx-auto mb-6" aria-label="Monogram">
+        <circle cx="55" cy="55" r="52" fill="none" stroke="#6687A8" stroke-width="0.6" opacity="0.6"/>
+        <circle cx="55" cy="55" r="46" fill="none" stroke="#6687A8" stroke-width="0.4" opacity="0.4"/>
+        <text x="55" y="66" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="40" fill="#6687A8" id="heroMono">ԱԱ</text>
+      </svg>
+
+      <p class="font-serif text-slate tracking-[8px] text-[10px] uppercase mb-4">Save the Date</p>
+      <h1 class="font-script text-bgray text-[56px] md:text-[72px] leading-none mb-4" id="heroNames">Արամ &amp; Անի</h1>
+      <div class="flex items-center justify-center gap-4 font-serif text-slate text-2xl md:text-3xl tracking-[6px] font-light">
+        <span id="heroDay">30</span>
+        <span class="text-bgray">·</span>
+        <span id="heroMonth">01</span>
+        <span class="text-bgray">·</span>
+        <span id="heroYear">2027</span>
+      </div>
+    </div>
+
+    <!-- Hero image -->
+    <div class="section-fade mt-10 w-full max-w-3xl mx-auto">
+      <div class="watercolor-frame aspect-[4/5] md:aspect-[16/10] overflow-hidden relative">
+        <img
+          id="heroImg"
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80"
+          alt="Փեսան և հարսը՝ պատշգամբից նայելով լճին ու լեռներին"
+          class="w-full h-full object-cover"
+          loading="eager"
+          onerror="this.style.background='linear-gradient(180deg,#E8EFF5 0%, #FAF9F6 100%)';this.alt=''"
+        />
+        <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, transparent 40%, rgba(250,249,246,0.6) 100%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME -->
+  <section class="py-20 md:py-28 px-6">
+    <div class="max-w-2xl mx-auto text-center section-fade">
+      <p class="font-serif text-[11px] tracking-[6px] text-lgray uppercase mb-8">Հրավեր</p>
+      <h2 class="font-script text-bgray text-4xl md:text-5xl mb-8 leading-tight">Սիրելի հյուրեր,</h2>
+      <p class="font-arm text-slate text-[15px] md:text-base leading-[1.9] mb-8">
+        Մենք ցանկանում ենք ձեզ հետ կիսել մեր կյանքի ամենակարևոր օրերից մեկը և մեծ սիրով հրավիրում ենք ձեզ մեր հարսանիքին։
+      </p>
+      <p class="font-serif text-lgray italic text-sm mb-4">Սիրով՝</p>
+      <p class="font-script text-bgray text-4xl md:text-5xl mb-6 leading-tight" id="welcomeNames">Արամ &amp; Անի</p>
+      <p class="font-serif text-slate tracking-[8px] text-sm uppercase">Հունվար</p>
+      <p class="font-serif text-slate tracking-[8px] text-sm mt-1">2027</p>
+    </div>
+  </section>
+
+  <!-- VISUAL STORY A: Romantic destination -->
+  <section class="py-10 px-6">
+    <div class="max-w-5xl mx-auto section-fade">
+      <div class="watercolor-frame-soft aspect-[4/5] md:aspect-[16/9] overflow-hidden relative">
+        <img
+          src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80"
+          alt="Ռոմանտիկ պատշգամբ՝ լճի և լեռների տեսարանով"
+          class="w-full h-full object-cover"
+          loading="lazy"
+          onerror="this.style.background='linear-gradient(180deg,#E8EFF5 0%, #FAF9F6 100%)'"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL STORY B: Armenian winter monastery (SVG illustration) -->
+  <section class="py-10 px-6">
+    <div class="max-w-4xl mx-auto section-fade">
+      <div class="watercolor-frame-soft aspect-[4/5] md:aspect-[16/10] overflow-hidden relative bg-pale">
+        <svg viewBox="0 0 800 500" class="w-full h-full" preserveAspectRatio="xMidYMid slice" aria-label="Հայկական ձմեռային բնանկար՝ վանքով և Արարատով">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8EFF5"/>
+              <stop offset="100%" stop-color="#FAF9F6"/>
+            </linearGradient>
+            <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#B8C5D1"/>
+              <stop offset="100%" stop-color="#8FA3B6"/>
+            </linearGradient>
+            <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#E8EFF5"/>
+            </linearGradient>
+            <filter id="soft"><feGaussianBlur stdDeviation="0.6"/></filter>
+          </defs>
+          <rect width="800" height="500" fill="url(#sky)"/>
+          <!-- Ararat silhouette -->
+          <path d="M 0 320 L 180 180 L 260 220 L 340 150 L 420 200 L 520 170 L 620 230 L 800 280 L 800 500 L 0 500 Z" fill="url(#mountain)" opacity="0.55" filter="url(#soft)"/>
+          <!-- Snow caps -->
+          <path d="M 180 180 L 220 200 L 200 210 L 180 200 Z" fill="url(#snow)" opacity="0.9"/>
+          <path d="M 340 150 L 380 180 L 360 190 L 340 175 Z" fill="url(#snow)" opacity="0.9"/>
+          <path d="M 520 170 L 560 195 L 540 205 L 520 190 Z" fill="url(#snow)" opacity="0.9"/>
+          <!-- Monastery -->
+          <g transform="translate(340,300)">
+            <rect x="0" y="30" width="120" height="70" fill="#9BA8B3" opacity="0.85"/>
+            <polygon points="0,30 60,-10 120,30" fill="#7A8894" opacity="0.9"/>
+            <rect x="50" y="-30" width="20" height="40" fill="#8A97A3"/>
+            <polygon points="50,-30 60,-55 70,-30" fill="#6E7B87"/>
+            <circle cx="60" cy="-58" r="3" fill="#C9D0D5"/>
+            <rect x="20" y="55" width="14" height="22" fill="#56636B" opacity="0.6"/>
+            <rect x="50" y="55" width="14" height="22" fill="#56636B" opacity="0.6"/>
+            <rect x="80" y="55" width="14" height="22" fill="#56636B" opacity="0.6"/>
+            <rect x="0" y="95" width="120" height="8" fill="#E8EFF5" opacity="0.7"/>
+          </g>
+          <!-- Snow trees -->
+          <g opacity="0.8">
+            <polygon points="120,380 140,320 160,380" fill="#8A97A3"/>
+            <polygon points="120,380 140,340 160,380" fill="#FFFFFF" opacity="0.6"/>
+            <polygon points="660,390 680,330 700,390" fill="#8A97A3"/>
+            <polygon points="660,390 680,350 700,390" fill="#FFFFFF" opacity="0.6"/>
+            <polygon points="220,400 235,360 250,400" fill="#8A97A3"/>
+            <polygon points="220,400 235,375 250,400" fill="#FFFFFF" opacity="0.6"/>
+            <polygon points="580,405 595,365 610,405" fill="#8A97A3"/>
+            <polygon points="580,405 595,380 610,405" fill="#FFFFFF" opacity="0.6"/>
+          </g>
+          <!-- Snow ground -->
+          <path d="M 0 400 Q 200 390 400 400 T 800 400 L 800 500 L 0 500 Z" fill="#FFFFFF" opacity="0.85"/>
+          <path d="M 0 420 Q 200 415 400 420 T 800 420 L 800 500 L 0 500 Z" fill="#E8EFF5" opacity="0.5"/>
+          <!-- Falling snow -->
+          <g fill="#FFFFFF" opacity="0.8">
+            <circle cx="100" cy="80" r="1.5"/>
+            <circle cx="250" cy="120" r="1"/>
+            <circle cx="400" cy="60" r="1.5"/>
+            <circle cx="550" cy="100" r="1"/>
+            <circle cx="700" cy="70" r="1.5"/>
+            <circle cx="150" cy="200" r="1"/>
+            <circle cx="350" cy="240" r="1.5"/>
+            <circle cx="600" cy="220" r="1"/>
+          </g>
+        </svg>
+      </div>
+      <p class="text-center font-serif text-lgray italic text-sm mt-6 tracking-wider">«Սարուխանի Սուրբ Աստվածամայր եկեղեցի»</p>
+    </div>
+  </section>
+
+  <!-- VISUAL STORY C: Wedding venue -->
+  <section class="py-10 px-6">
+    <div class="max-w-5xl mx-auto section-fade">
+      <div class="watercolor-frame aspect-[4/5] md:aspect-[16/10] overflow-hidden relative">
+        <img
+          src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80"
+          alt="Հարսանյաց արտաքին վայր՝ ծաղիկներով և նուրբ լուսավորությամբ"
+          class="w-full h-full object-cover"
+          loading="lazy"
+          onerror="this.style.background='linear-gradient(180deg,#E8EFF5 0%, #FAF9F6 100%)'"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto text-center section-fade">
+      <p class="font-serif text-[11px] tracking-[6px] text-lgray uppercase mb-6">Հաշվարկ</p>
+      <h2 class="font-script text-bgray text-4xl md:text-5xl mb-12 leading-tight">Մեր հարսանիքին մնաց</h2>
+      <div class="grid grid-cols-4 gap-2 md:gap-8" id="countdown">
+        <div>
+          <div class="cd-num" id="cdDays">000</div>
+          <div class="cd-label">Օր</div>
+        </div>
+        <div>
+          <div class="cd-num" id="cdHours">00</div>
+          <div class="cd-label">Ժամ</div>
+        </div>
+        <div>
+          <div class="cd-num" id="cdMins">00</div>
+          <div class="cd-label">Րոպե</div>
+        </div>
+        <div>
+          <div class="cd-num" id="cdSecs">00</div>
+          <div class="cd-label">Վայրկյան</div>
+        </div>
+      </div>
+      <p id="cdCelebration" class="hidden font-script text-bgray text-3xl md:text-4xl mt-10">Շնորհավոր մեր հարսանիքը 🤍</p>
+    </div>
+  </section>
+
+  <!-- VISUAL STORY D: Table setting -->
+  <section class="py-10 px-6">
+    <div class="max-w-5xl mx-auto section-fade">
+      <div class="watercolor-frame-soft aspect-[4/5] md:aspect-[16/10] overflow-hidden relative">
+        <img
+          src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80"
+          alt="Հարսանյական սեղանի ձևավորում՝ սպիտակ ծաղիկներով և կապույտ տերևներով"
+          class="w-full h-full object-cover"
+          loading="lazy"
+          onerror="this.style.background='linear-gradient(180deg,#E8EFF5 0%, #FAF9F6 100%)'"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT TIMELINE -->
+  <section class="py-20 md:py-28 px-6">
+    <div class="max-w-2xl mx-auto section-fade">
+      <p class="text-center font-serif text-[11px] tracking-[6px] text-lgray uppercase mb-6">Ժամանակացույց</p>
+      <h2 class="text-center font-script text-bgray text-4xl md:text-5xl mb-16 leading-tight">Մեր օրվա ծրագիր</h2>
+
+      <!-- Event 1: Ceremony -->
+      <div class="event-card p-8 md:p-10 text-center">
+        <p class="font-serif text-[10px] tracking-[5px] text-lgray uppercase mb-3">Արարողություն</p>
+        <h3 class="font-script text-bgray text-3xl md:text-4xl mb-4">Պսակադրություն</h3>
+        <p class="font-serif text-slate text-2xl md:text-3xl font-light tracking-[4px] mb-6" id="ceremonyTime">14:00</p>
+        <p class="font-arm text-dslate text-base mb-2" id="ceremonyVenue">Սուրբ [Եկեղեցու անուն] եկեղեցի</p>
+        <p class="font-arm text-lgray text-sm mb-8" id="ceremonyAddress">[Եկեղեցու հասցե]</p>
+        <button class="btn-outline" data-map="ceremony" aria-label="Ինչպես հասնել եկեղեցի">ԻՆՉՊԵՍ ՀԱՍՆԵԼ</button>
+      </div>
+
+      <!-- Dashed path -->
+      <div class="flex justify-center py-10">
+        <div class="dashed-path w-px h-24"></div>
+      </div>
+
+      <!-- Event 2: Reception -->
+      <div class="event-card p-8 md:p-10 text-center">
+        <p class="font-serif text-[10px] tracking-[5px] text-lgray uppercase mb-3">Տոնակատարություն</p>
+        <h3 class="font-script text-bgray text-3xl md:text-4xl mb-4">Հարսանյաց Հանդիսություն</h3>
+        <p class="font-serif text-slate text-2xl md:text-3xl font-light tracking-[4px] mb-6" id="receptionTime">17:00</p>
+        <p class="font-arm text-dslate text-base mb-2" id="receptionVenue">[Ռեստորանի անուն]</p>
+        <p class="font-arm text-lgray text-sm mb-8" id="receptionAddress">ք. Երևան, [Հասցե]</p>
+        <button class="btn-outline" data-map="reception" aria-label="Ինչպես հասնել ռեստորան">ԻՆՉՊԵՍ ՀԱՍՆԵԼ</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="py-20 md:py-28 px-6">
+    <div class="max-w-xl mx-auto section-fade">
+      <p class="text-center font-serif text-[11px] tracking-[6px] text-lgray uppercase mb-6">Հաստատում</p>
+      <h2 class="text-center font-script text-bgray text-4xl md:text-5xl mb-4 leading-tight">Խնդրում ենք հաստատել</h2>
+      <p class="text-center font-serif text-slate text-base tracking-wider mb-12">
+        Ձեր ներկայությունը մինչև <span class="text-bgray font-medium" id="rsvpDeadline">15.01.2027</span>
+      </p>
+
+      <form id="rsvpForm" novalidate class="space-y-6">
+        <!-- Side -->
+        <div>
+          <p class="font-arm text-slate text-sm mb-3">Դուք ո՞ր կողմից եք։</p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <label class="radio-pill flex-1 justify-center">
+              <input type="radio" name="side" value="bride" required>
+              <span class="radio-dot"></span>
+              <span>Հարսի կողմ</span>
+            </label>
+            <label class="radio-pill flex-1 justify-center">
+              <input type="radio" name="side" value="groom">
+              <span class="radio-dot"></span>
+              <span>Փեսայի կողմ</span>
+            </label>
+          </div>
+          <p class="error-msg" data-error="side">Խնդրում ենք ընտրել կողմը։</p>
+        </div>
+
+        <!-- Name -->
+        <div class="field" data-field="name">
+          <label for="guestName">Անուն, Ազգանուն</label>
+          <input type="text" id="guestName" name="name" required autocomplete="name">
+          <p class="error-msg">Խնդրում ենք լրացնել անունը։</p>
+        </div>
+
+        <!-- Guests count -->
+        <div class="field" data-field="guests">
+          <label for="guestCount">Հյուրերի քանակը</label>
+          <input type="number" id="guestCount" name="guests" min="1" max="10" value="1" required>
+          <p class="error-msg">Խնդրում ենք նշել հյուրերի քանակը։</p>
+        </div>
+
+        <!-- Attendance -->
+        <div>
+          <p class="font-arm text-slate text-sm mb-3">Կկարողանա՞ք ներկա գտնվել։</p>
+          <div class="flex flex-col gap-3">
+            <label class="radio-pill">
+              <input type="radio" name="attendance" value="yes" required>
+              <span class="radio-dot"></span>
+              <span>Իհարկե, սիրով կգամ</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="attendance" value="no">
+              <span class="radio-dot"></span>
+              <span>Ցավոք, չեմ կարող գալ</span>
+            </label>
+          </div>
+          <p class="error-msg" data-error="attendance">Խնդրում ենք ընտրել պատասխանը։</p>
+        </div>
+
+        <!-- Notes -->
+        <div class="field" data-field="notes">
+          <label for="guestNotes">Սննդային սահմանափակումներ կամ մեկնաբանություն</label>
+          <textarea id="guestNotes" name="notes" rows="3" class="resize-none"></textarea>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="submit" class="btn-primary" id="rsvpSubmit">ՈՒՂԱՐԿԵԼ</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-16 px-6 text-center border-t border-silver/30">
+    <svg width="80" height="80" viewBox="0 0 110 110" class="mx-auto mb-6" aria-hidden="true">
+      <circle cx="55" cy="55" r="52" fill="none" stroke="#6687A8" stroke-width="0.6" opacity="0.6"/>
+      <text x="55" y="66" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="40" fill="#6687A8" id="footMono">ԱԱ</text>
+    </svg>
+    <p class="font-script text-bgray text-3xl mb-2" id="footNames">Արամ &amp; Անի</p>
+    <p class="font-serif text-lgray tracking-[6px] text-xs uppercase">30 · 01 · 2027</p>
+    <p class="font-arm text-lgray text-xs mt-8 tracking-wider">Սիրով պատրաստված Ձեզ համար</p>
+  </footer>
+</main>
+
+<!-- ===================== FLOATING BUTTONS ===================== -->
+<button class="fab fab-faq" id="fabFaq" aria-label="Հաճախ տրվող հարցեր">FAQ</button>
+<button class="fab fab-chat" id="fabChat" aria-label="Կապ մեզ հետ">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+</button>
+<button class="fab fab-music" id="fabMusic" aria-label="Երաժշտություն">
+  <div class="music-bars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</button>
+
+<!-- ===================== FAQ MODAL ===================== -->
+<div class="modal-backdrop" id="faqBackdrop"></div>
+<aside class="modal-panel" id="faqPanel" role="dialog" aria-modal="true" aria-labelledby="faqTitle">
+  <div class="flex items-center justify-between mb-8">
+    <h3 id="faqTitle" class="font-script text-bgray text-3xl">Հարցեր</h3>
+    <button id="faqClose" class="w-10 h-10 rounded-full flex items-center justify-center text-slate hover:bg-pale transition" aria-label="Փակել">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="faqList"></div>
+</aside>
+
+<!-- ===================== TOAST ===================== -->
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6687A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="toastMsg">Շնորհակալություն։ Ձեր պատասխանը ստացված է։</span>
+</div>
+
+<!-- ===================== AUDIO ===================== -->
+<audio id="bgMusic" loop preload="none">
+  <!-- Replace with your licensed track URL -->
+  <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-10670.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Falling Hearts Container -->
+<div id="hearts-container" aria-hidden="true"></div>
+
+<script>
+/* =========================================================
+   WEDDING CONFIGURATION
+   Edit all personalized content here.
+   ========================================================= */
+const WEDDING_CONFIG = {
+  couple: {
+    groom: "Արամ",
+    bride: "Անի",
+    // Combined display
+    displayNames: "Արամ & Անի",
+    // Monogram letters (two initials)
+    monogram: "ԱԱ",
+    // Mini monogram for envelope card
+    miniMonogram: "Ա · Ա"
+  },
+  date: {
+    // Wedding date in Armenian timezone (UTC+4)
+    weddingISO: "2027-01-30T14:00:00+04:00",
+    day: "30",
+    month: "01",
+    year: "2027",
+    rsvpDeadline: "15.01.2027",
+    ceremonyTime: "14:00",
+    receptionTime: "17:00"
+  },
+  venue: {
+    ceremony: {
+      name: "Սարուխանի Սուրբ Աստվածամայր եկեղեցի",
+      address: "գ. Սարուխան",
+      // Google Maps link or coordinates
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=40.1790,44.5000"
+    },
+    reception: {
+      name: "Նարեկ Մյուզիք Հոլ ",
+      address: "գ. Սարուխան,",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=40.1830,44.5150"
+    }
+  },
+  contact: {
+    // Platform: "whatsapp" | "telegram" | "tel"
+    platform: "whatsapp",
+    // Phone number with country code (no + or spaces)
+    phone: "37494552185",
+    // Telegram username (without @)
+    telegram: "username"
+  },
+  music: {
+    // URL to your licensed romantic background track
+    url: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-10670.mp3"
+  },
+  images: {
+    hero: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
+    venue: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80",
+    table: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80"
+  },
+  faq: [
+    {
+      q: "Ե՞րբ է տեղի ունենալու հարսանիքը։",
+      a: "Հարսանիքը տեղի կունենա 30 հունվարի, 2027 թվականին։ Պսակադրությունը՝ ժամը 14:00-ին, իսկ հարսանյաց հանդիսությունը՝ ժամը 17:00-ին։"
+    },
+    {
+      q: "Որտե՞ղ է տեղի ունենալու արարողությունը։",
+      a: "Պսակադրությունը տեղի կունենա Սուրբ եկեղեցում, իսկ հարսանյաց հանդիսությունը՝ Երևանի ռեստորաններից մեկում։ Ճշգրիտ հասցեները նշված են հրավերի մեջ։"
+    },
+    {
+      q: "Ինչպե՞ս հասնել միջոցառման վայր։",
+      a: "Ժամանակացույց բաժնում կարող եք սեղմել «Ինչպես հասնել» կոճակը՝ քարտեզը բացելու համար։ Կազմակերպված է նաև տրանսպորտ հյուրերի համար։"
+    },
+    {
+      q: "Կա՞ արդյոք հագուստի հատուկ դրես-կոդ։",
+      a: "Խնդրում ենք նախընտրել երեկոյան կոկիկ հագուստ։ Ցանկալի են պաստելային և բաց երանգներ։ Սպիտակ գույնը վերապահված է միայն հարսնացուին։"
+    },
+    {
+      q: "Մինչև ե՞րբ պետք է հաստատել մասնակցությունը։",
+      a: "Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև 15 հունվարի, 2027 թվականը՝ լրացնելով այս կայքի RSVP ձևը։"
+    },
+    {
+      q: "Ո՞ւմ հետ կապ հաստատել հարցերի դեպքում։",
+      a: "Ցանկացած հարցի դեպքում կարող եք կապ հաստատել մեզ հետ՝ սեղմելով կանաչ չատի կոճակը էկրանի աջ կողմում։"
+    }
+  ],
+  // Backend integration point for RSVP
+  // Set to null to use demo mode (shows success without sending)
+  // Set to a URL to POST form data as JSON
+  rsvpEndpoint: null
+};
+
+/* =========================================================
+   APPLY CONFIG TO DOM
+   ========================================================= */
+(function applyConfig(){
+  const c = WEDDING_CONFIG;
+  // Monograms
+  document.getElementById('sealMono').textContent = c.couple.monogram;
+  document.getElementById('miniMono').textContent = c.couple.miniMonogram;
+  document.getElementById('heroMono').textContent = c.couple.monogram;
+  document.getElementById('footMono').textContent = c.couple.monogram;
+  // Names
+  document.getElementById('heroNames').innerHTML = c.couple.displayNames.replace(' & ', ' &amp; ');
+  document.getElementById('welcomeNames').innerHTML = c.couple.displayNames.replace(' & ', ' &amp; ');
+  document.getElementById('footNames').innerHTML = c.couple.displayNames.replace(' & ', ' &amp; ');
+  // Date
+  document.getElementById('miniDate').textContent = `${c.date.day} · ${c.date.month} · ${c.date.year}`;
+  document.getElementById('heroDay').textContent = c.date.day;
+  document.getElementById('heroMonth').textContent = c.date.month;
+  document.getElementById('heroYear').textContent = c.date.year;
+  document.getElementById('rsvpDeadline').textContent = c.date.rsvpDeadline;
+  document.getElementById('ceremonyTime').textContent = c.date.ceremonyTime;
+  document.getElementById('receptionTime').textContent = c.date.receptionTime;
+  // Venues
+  document.getElementById('ceremonyVenue').textContent = c.venue.ceremony.name;
+  document.getElementById('ceremonyAddress').textContent = c.venue.ceremony.address;
+  document.getElementById('receptionVenue').textContent = c.venue.reception.name;
+  document.getElementById('receptionAddress').textContent = c.venue.reception.address;
+  // Images
+  document.getElementById('heroImg').src = c.images.hero;
+})();
+
+/* =========================================================
+   ENVELOPE INTERACTION
+   ========================================================= */
+const envelopeIntro = document.getElementById('envelope-intro');
+const envelope = document.getElementById('envelope');
+const seal = document.getElementById('seal');
+const mainSite = document.getElementById('main-site');
+const bgMusic = document.getElementById('bgMusic');
+let envelopeOpened = false;
+
+function openEnvelope(){
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+  envelope.classList.add('open');
+  // After flap opens, transition to main site
+  setTimeout(() => {
+    envelopeIntro.classList.add('opened');
+    mainSite.classList.add('visible');
+    // Attempt music (requires gesture, which we have)
+    tryPlayMusic();
+  }, 1600);
+}
+
+seal.addEventListener('click', openEnvelope);
+seal.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openEnvelope(); }
+});
+document.getElementById('openHint').addEventListener('click', openEnvelope);
+
+/* =========================================================
+   MUSIC PLAYER
+   ========================================================= */
+const fabMusic = document.getElementById('fabMusic');
+let musicPlaying = false;
+
+function tryPlayMusic(){
+  const p = bgMusic.play();
+  if (p !== undefined){
+    p.then(() => {
+      musicPlaying = true;
+      fabMusic.classList.add('playing');
+    }).catch(() => {
+      musicPlaying = false;
+    });
+  }
+}
+
+fabMusic.addEventListener('click', () => {
+  if (musicPlaying){
+    bgMusic.pause();
+    musicPlaying = false;
+    fabMusic.classList.remove('playing');
+  } else {
+    tryPlayMusic();
+  }
+});
+
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
+const weddingDate = new Date(WEDDING_CONFIG.date.weddingISO);
+const cdDays = document.getElementById('cdDays');
+const cdHours = document.getElementById('cdHours');
+const cdMins = document.getElementById('cdMins');
+const cdSecs = document.getElementById('cdSecs');
+const cdCelebration = document.getElementById('cdCelebration');
+const countdownEl = document.getElementById('countdown');
+
+function pad(n, len=2){ return String(n).padStart(len, '0'); }
+
+function updateCountdown(){
+  const now = new Date();
+  const diff = weddingDate - now;
+  if (diff <= 0){
+    countdownEl.style.display = 'none';
+    cdCelebration.classList.remove('hidden');
+    return;
+  }
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const mins = Math.floor((diff / (1000*60)) % 60);
+  const secs = Math.floor((diff / 1000) % 60);
+  cdDays.textContent = pad(days, 3);
+  cdHours.textContent = pad(hours);
+  cdMins.textContent = pad(mins);
+  cdSecs.textContent = pad(secs);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* =========================================================
+   MAP BUTTONS
+   ========================================================= */
+document.querySelectorAll('[data-map]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.map;
+    const url = WEDDING_CONFIG.venue[key].mapsUrl;
+    window.open(url, '_blank', 'noopener');
+  });
+});
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+const faqList = document.getElementById('faqList');
+const faqBackdrop = document.getElementById('faqBackdrop');
+const faqPanel = document.getElementById('faqPanel');
+const fabFaq = document.getElementById('fabFaq');
+const faqClose = document.getElementById('faqClose');
+
+WEDDING_CONFIG.faq.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = 'faq-item';
+  el.innerHTML = `
+    <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+      <span>${item.q}</span>
+      <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="faq-a"><p>${item.a}</p></div>
+  `;
+  const q = el.querySelector('.faq-q');
+  const toggle = () => {
+    const open = el.classList.toggle('open');
+    q.setAttribute('aria-expanded', open);
+  };
+  q.addEventListener('click', toggle);
+  q.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+  });
+  faqList.appendChild(el);
+});
+
+function openFaq(){
+  faqBackdrop.classList.add('open');
+  faqPanel.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFaq(){
+  faqBackdrop.classList.remove('open');
+  faqPanel.classList.remove('open');
+  document.body.style.overflow = '';
+}
+fabFaq.addEventListener('click', openFaq);
+faqClose.addEventListener('click', closeFaq);
+faqBackdrop.addEventListener('click', closeFaq);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && faqPanel.classList.contains('open')) closeFaq();
+});
+
+/* =========================================================
+   CHAT BUTTON
+   ========================================================= */
+document.getElementById('fabChat').addEventListener('click', () => {
+  const c = WEDDING_CONFIG.contact;
+  let url = '';
+  if (c.platform === 'whatsapp'){
+    url = `https://wa.me/${c.phone}`;
+  } else if (c.platform === 'telegram'){
+    url = `https://t.me/${c.telegram}`;
+  } else if (c.platform === 'tel'){
+    url = `tel:+${c.phone}`;
+  }
+  if (url) window.open(url, '_blank');
+});
+
+/* =========================================================
+   RSVP FORM
+   ========================================================= */
+const rsvpForm = document.getElementById('rsvpForm');
+const rsvpSubmit = document.getElementById('rsvpSubmit');
+const toast = document.getElementById('toast');
+const toastMsg = document.getElementById('toastMsg');
+let rsvpSubmitted = false;
+
+function showToast(msg, isError=false){
+  toastMsg.textContent = msg;
+  toast.style.borderColor = isError ? '#c97b7b' : 'rgba(102,135,168,0.25)';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3800);
+}
+
+function clearErrors(){
+  rsvpForm.querySelectorAll('.field').forEach(f => f.classList.remove('error'));
+  rsvpForm.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+}
+
+function setError(field, msg){
+  const el = rsvpForm.querySelector(`[data-field="${field}"]`);
+  if (el){
+    el.classList.add('error');
+    const err = el.querySelector('.error-msg');
+    if (err){ err.textContent = msg; err.style.display = 'block'; }
+  }
+}
+function setGroupError(name, msg){
+  const err = rsvpForm.querySelector(`[data-error="${name}"]`);
+  if (err){ err.textContent = msg; err.style.display = 'block'; }
+}
+
+rsvpForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (rsvpSubmitted) return;
+  clearErrors();
+
+  const data = {
+    side: rsvpForm.side.value,
+    name: rsvpForm.name.value.trim(),
+    guests: parseInt(rsvpForm.guests.value, 10),
+    attendance: rsvpForm.attendance.value,
+    notes: rsvpForm.notes.value.trim(),
+    submittedAt: new Date().toISOString()
+  };
+
+  let valid = true;
+  if (!data.side){ setGroupError('side', 'Խնդրում ենք ընտրել կողմը։'); valid = false; }
+  if (!data.name || data.name.length < 2){ setError('name', 'Խնդրում ենք լրացնել անունը։'); valid = false; }
+  if (!data.guests || data.guests < 1){ setError('guests', 'Խնդրում ենք նշել հյուրերի քանակը։'); valid = false; }
+  if (!data.attendance){ setGroupError('attendance', 'Խնդրում ենք ընտրել պատասխանը։'); valid = false; }
+
+  if (!valid) return;
+
+  rsvpSubmit.disabled = true;
+  rsvpSubmit.textContent = 'ՈՒՂԱՐԿՎՈՒՄ Է...';
+
+  try {
+    if (WEDDING_CONFIG.rsvpEndpoint){
+      const res = await fetch(WEDDING_CONFIG.rsvpEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error('Network response was not ok');
+    } else {
+      // Demo mode: simulate network delay
+      await new Promise(r => setTimeout(r, 900));
+      console.info('[RSVP Demo] Submission data (not sent to backend):', data);
+    }
+    rsvpSubmitted = true;
+    showToast('Շնորհակալություն։ Ձեր պատասխանը հաջողությամբ ուղարկված է։');
+    rsvpForm.reset();
+  } catch (err){
+    console.error('RSVP submission failed:', err);
+    showToast('Տեղի ունեցավ սխալ։ Խնդրում ենք փորձել կրկին։', true);
+    rsvpSubmit.disabled = false;
+    rsvpSubmit.textContent = 'ՈՒՂԱՐԿԵԼ';
+  }
+});
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+
+/* =========================================================
+   SMOOTH SCROLL for any internal anchors
+   ========================================================= */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target){ e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
